@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "cablegator"
 
+  s.add_dependency('bundler')
   s.add_dependency('nokogiri')
   s.add_dependency('httparty')
 

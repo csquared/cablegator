@@ -1,7 +1,7 @@
 # library loader
 require 'rubygems'
-require 'bundler'
-Bundler.setup
+#require 'bundler'
+#Bundler.setup
 
 $LOAD_PATH.unshift(File.dirname(__FILE__)) unless $LOAD_PATH.include?(File.dirname(__FILE__))
 
@@ -9,3 +9,4 @@ $LOAD_PATH.unshift(File.dirname(__FILE__)) unless $LOAD_PATH.include?(File.dirna
 require 'open-uri'
 require 'nokogiri'
 require 'httparty'
+require 'fileutils'
