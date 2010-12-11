@@ -1,0 +1,26 @@
+Install via:
+
+<code>
+> gem install cablegator
+</code>
+
+
+Run Via:
+
+<code>
+> download_cables 
+Downloading Cables
+Downloading cable 66BUENOSAIRES2481 to ./cable/1966/12/66BUENOSAIRES2481.html
+Downloading cable 72TEHRAN1164 to ./cable/1972/02/72TEHRAN1164.html
+Downloading cable 72TEHRAN5055 to ./cable/1972/08/72TEHRAN5055.html
+Downloading cable 75TEHRAN2069 to ./cable/1975/03/75TEHRAN2069.html
+Downloading cable 79TEHRAN8980 to ./cable/1979/08/79TEHRAN8980.html
+Downloading cable 86MADRID5480 to ./cable/1986/05/86MADRID5480.html
+Downloading cable 88BAGHDAD28 to ./cable/1988/01/88BAGHDAD28.html
+Downloading cable 89PANAMA8545 to ./cable/1989/12/89PANAMA8545.html
+Downloading cable 90CAPETOWN97 to ./cable/1990/01/90CAPETOWN97.html
+Downloading cable 00HARARE6677 to ./cable/2000/11/00HARARE6677.html
+Downloading cable 01PRETORIA1173 to ./cable/2001/02/01PRETORIA1173.html
+...
+
+</code>

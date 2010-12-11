@@ -1,0 +1,24 @@
+#! /usr/bin/env ruby
+require 'cablegator/cablegator'
+require 'cablegator/wikileaks'
+require 'optionparser'
+
+puts "Downloading cables to #{Dir.pwd}"
+doc = Nokogiri::HTML(WikiLeaks.home)
+
+doc.css(%{a[href^='/date']}).each do |link|
+  page_with_cables = Nokogiri::HTML(WikiLeaks.get(link.attributes['href'].value))
+  page_with_cables.css(%{a[href^='/cable']}).each do |cable|
+    cable_url = cable.attributes['href'].value
+    file_location = '.' + cable_url
+    reference_id = File.basename(cable_url).gsub(File.extname(cable_url),'') 
+
+    if !File.exist?(file_location)
+      FileUtils.mkdir_p(File.dirname(file_location))
+      STDOUT.puts "Downloading cable #{reference_id} to #{file_location}"
+      File.open(file_location, 'w') { |f| f << WikiLeaks.get(cable_url) } 
+    else
+      STDOUT.puts "You already have #{reference_id} in #{file_location}"
+    end
+  end
+end
