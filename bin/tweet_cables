@@ -1,0 +1,12 @@
+#! /usr/bin/env ruby
+require 'cablegator'
+require 'cablegator/wikileaks'
+
+username = gets "Twitter Username: "
+password = gets "Twitter Password: "
+
+puts "Tweeting cables as #{username}"
+Wikileaks.with_each_cable do |cable_url|
+  reference_id = Wikileaks.reference_id(cable_url) 
+  puts "Should tweet #{reference_id}"
+end
