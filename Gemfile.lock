@@ -2,13 +2,21 @@ GEM
   remote: http://gemcutter.org/
   specs:
     crack (0.1.8)
+    grackle (0.1.10)
+      json
+      mime-types
+      oauth
     httparty (0.6.1)
       crack (= 0.1.8)
+    json (1.4.6)
+    mime-types (1.16)
     nokogiri (1.4.4)
+    oauth (0.4.4)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  grackle
   httparty
   nokogiri

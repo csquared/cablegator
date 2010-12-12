@@ -1,12 +1,37 @@
 #! /usr/bin/env ruby
 require 'cablegator'
-require 'cablegator/wikileaks'
+require 'oauth'
+require 'twitter'
 
-username = gets "Twitter Username: "
-password = gets "Twitter Password: "
+consumer_key = 'ddxhhHSHys7210VR8lhYag'
+consumer_secret = 'FN5kIDAvwWU4jb54JMfWWTbtpI30JKeEmRWMYSMYk'
+
+oauth_client = OAuth::Consumer.new(consumer_key, consumer_secret, 
+                    :site => 'http://api.twitter.com', 
+                    :request_endpoint => 'http://api.twitter.com', 
+                    :sign_in => true)
+
+req_token = oauth_client.get_request_token
+
+puts "Give access via the following url: \n #{req_token.authorize_url}\n"
+pin = gets "Enter Pin: "
+username = gets "Enter Username:"
+
+access_token = oauth_cliean.get_access_token(:oauth_verifier => pin)
+
+Twitter.configure do |config|
+  config.consumer_key = access_token.consumer.key
+  config.consumer_secret = access_token.consumer.secret
+  config.oauth_token = access_token.token 
+  config.oauth_token_secret = access_token.secret
+end
+
+Twitter.user(username)
 
 puts "Tweeting cables as #{username}"
 Wikileaks.with_each_cable do |cable_url|
   reference_id = Wikileaks.reference_id(cable_url) 
-  puts "Should tweet #{reference_id}"
+  tweet = "#cablegate #{reference_id} #{cable_url}"
+  puts "Tweeting: #{tweet}"
+  Twitter.update(tweet)
 end

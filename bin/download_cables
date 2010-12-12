@@ -1,6 +1,6 @@
 #! /usr/bin/env ruby
 require 'cablegator'
-require 'cablegator/wikileaks'
+require 'fileutils'
 
 dir_prefix = ARGV[0] || Dir.pwd
 
