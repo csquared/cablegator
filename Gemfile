@@ -1,4 +1,6 @@
 source 'http://gemcutter.org'
 gem 'nokogiri'
 gem 'httparty'
-gem 'grackle'
+gem 'twitter'
+gem 'oauth'
+gem 'launchy'
