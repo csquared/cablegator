@@ -5,8 +5,10 @@ require 'twitter'
 require 'cablegator/twitter'
 require 'launchy'
 require 'fileutils'
+require 'base64'
 
-save_file = File.expand_path('~/.cablegator/tweeted')
+
+save_file = File.expand_path("~/.cablegator/tweeted_fmt_#{ARGV[0].to_s.gsub(/:| /,'')}")
 FileUtils.mkdir_p(File.dirname(save_file))
 
 # save file
@@ -16,20 +18,25 @@ at_exit do
 end
 
 username = Twitter.command_line_login
-puts "Tweeting cables as @#{username}"
+puts "Tweeting cables" #as @#{username}"
 
-WikiLeaks.with_each_cable do |cable_url|
-  reference_id = WikiLeaks.reference_id(cable_url) 
+WikiLeaks.with_each_cable_data do |cable_data|
+  reference_id = cable_data['reference_id']
+
   if tweeted.include?(reference_id)
     puts "Already tweeted #{reference_id}"
   else
-    tweet = "#cablegate ##{reference_id} #{WikiLeaks.base_uri + cable_url}"
+    format_string = ARGV[0].to_s.dup
+    cable_data.each { |k,v| format_string.gsub!(/\:#{k}/,v) }
+
+    tweet = "#cablegate ##{reference_id} #{format_string}"
+    
     puts "Tweeting: #{tweet}"
     begin 
       Twitter.update(tweet) 
       tweeted << reference_id
-      delay = ARGV[0].to_i rescue nil
-      sleep(delay || 1)
+      delay = ARGV[1].to_i rescue nil
+      sleep(delay || 10)
     rescue 
       "Tweet #{reference_id} failed"
     end
