@@ -14,16 +14,15 @@ Run Via:
 
 And
 <code>
->     tweet_cables
+>     tweet_cables <delay in seconds>
 </code>
 You will then be prompted to login to Twitter from the cmd line.
-From here the program tweets links to all the cables.
+From here the program tweets links to all the cables, waiting between posts.  Default delay is 1 second.
 
 #TODO:
-* Don't tweet if already tweeted
-* Tweet links to cables and subjects.
+* DONE - Don't tweet if already tweeted
+* Allow tweet customization
+* Create webapp to run this
 
 #Features:
-* Won't download file if it already exists.
-* Allows you to choose directory.
 * Disqualifies you from employment at various federal agencies.
