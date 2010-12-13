@@ -1,25 +1,12 @@
 #! /usr/bin/env ruby
-require 'cablegator'
-require 'oauth'
 require 'twitter'
+require 'cablegator'
 require 'cablegator/twitter'
-require 'launchy'
-require 'fileutils'
-require 'base64'
 
+Twitter.command_line_login
+tweeted = CableGator.save_file("~/.cablegator/tweeted_fmt_#{ARGV[0].to_s.gsub(/:| /,'')}")
 
-save_file = File.expand_path("~/.cablegator/tweeted_fmt_#{ARGV[0].to_s.gsub(/:| /,'')}")
-FileUtils.mkdir_p(File.dirname(save_file))
-
-# save file
-tweeted = File.read(save_file).split(',') rescue []
-at_exit do
-  File.open(save_file, 'w') { |f| f << tweeted.join(',') }
-end
-
-username = Twitter.command_line_login
-puts "Tweeting cables" #as @#{username}"
-
+puts "Tweeting cables" 
 WikiLeaks.with_each_cable_data do |cable_data|
   reference_id = cable_data['reference_id']
 

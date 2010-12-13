@@ -1,3 +1,6 @@
+require 'oauth'
+require 'launchy'
+
 module Twitter
   def self.command_line_login
     consumer_key = 'ddxhhHSHys7210VR8lhYag'

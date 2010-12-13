@@ -1,5 +1,7 @@
 require 'socket'
 require 'timeout'
+require 'nokogiri'
+require 'httparty'
 
 class WikiLeaks 
   include HTTParty
