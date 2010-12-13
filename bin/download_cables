@@ -5,9 +5,9 @@ require 'fileutils'
 dir_prefix = ARGV[0] || Dir.pwd
 
 puts "Downloading cables to #{File.expand_path(dir_prefix)}"
-Wikileaks.with_each_cable do |cable_url|
+WikiLeaks.with_each_cable do |cable_url|
   file_location = File.expand_path(dir_prefix + cable_url)
-  reference_id = Wikileaks.reference_id(cable_url) 
+  reference_id = WikiLeaks.reference_id(cable_url) 
 
   if !File.exist?(file_location)
     FileUtils.mkdir_p(File.dirname(file_location))

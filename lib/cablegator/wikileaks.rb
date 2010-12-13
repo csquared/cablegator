@@ -26,15 +26,11 @@ class WikiLeaks
     def with_each_cable
       doc = Nokogiri::HTML(self.get(HOME))
       doc.css(%{a[href^='/date']}).each do |link|
-        cable_url = link.attributes['href'].value
-        begin
-          page_with_cables = Nokogiri::HTML(WikiLeaks.get(cable_url))
-          page_with_cables.css(%{a[href^='/cable']}).each do |cable|
-            cable_url = cable.attributes['href'].value
-            yield cable_url
-          end
-        rescue
-          STDOUT.puts "error GETtin page #{cable_url}"
+      cable_url = link.attributes['href'].value
+        page_with_cables = Nokogiri::HTML(WikiLeaks.get(cable_url))
+        page_with_cables.css(%{a[href^='/cable']}).each do |cable|
+          cable_url = cable.attributes['href'].value
+          yield cable_url
         end
       end
     end
