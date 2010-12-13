@@ -40,5 +40,5 @@ WikiLeaks.with_each_cable do |cable_url|
   tweet = "#cablegate ##{reference_id} #{WikiLeaks.base_uri + cable_url}"
   puts "Tweeting: #{tweet}"
   Twitter.update(tweet) rescue "Tweet #{reference_id} failed"
-  #sleep 1
+  sleep 1
 end

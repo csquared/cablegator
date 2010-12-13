@@ -1,7 +1,19 @@
+require 'socket'
+require 'timeout'
+
 class WikiLeaks 
   include HTTParty
+  PROXY_URL = 'localhost'
+  PROXY_PORT = 8118
   base_uri 'http://wikileaks.ch'
-  http_proxy 'localhost', 8118
+
+  #let's check for tor on privoxy
+  Timeout::timeout(1) do
+    TCPSocket.new(PROXY_URL, PROXY_PORT).close
+    http_proxy 'localhost', 8118
+    puts "Using TOR!"
+  end rescue nil
+    
   HOME = '/cablegate.html'
 
   class << self
